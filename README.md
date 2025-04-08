@@ -1,75 +1,78 @@
 
-# 🧠 Computer Vision Techniques – Feature Detection & Matching
+# 🧠 Feature Detection using Classical Computer Vision Techniques
 
 ## 📁 Project Overview
 
-This project implements and visualizes **feature detection and matching techniques** used in computer vision. The following algorithms have been implemented using Python and OpenCV:
+This project demonstrates the implementation of **three classical computer vision algorithms** using OpenCV in Python. These techniques are used in areas such as object detection, motion tracking, and image registration.
+
+The implemented algorithms are:
 
 - **SIFT (Scale-Invariant Feature Transform)**
-- **RANSAC (Random Sample Consensus)**
 - **Harris Corner Detector**
 - **Shi-Tomasi Corner Detector**
 
-These techniques are foundational in tasks like object detection, image stitching, structure from motion, and panorama creation.
+Each algorithm is applied on real-world images, and the visual outputs are generated to show matched keypoints or detected corners.
 
 ---
 
-## 🔍 Algorithms Implemented
+## ✅ Implemented Algorithms
 
-### 1️⃣ SIFT Algorithm
+### 🔹 1. SIFT – Scale-Invariant Feature Transform
+
 **Purpose:**  
-To detect and match keypoints between two images that may have different scales, rotations, or lighting.
+To detect and match robust keypoints between two images that may vary in scale, rotation, or lighting.
 
-**Key Features:**
-- Detects distinctive and scale-invariant keypoints.
-- Descriptors are robust to image transformation.
-- Matches keypoints between two images using descriptor similarity.
+**Steps:**
+- Detect keypoints in both images.
+- Generate feature descriptors.
+- Match descriptors using BFMatcher and apply Lowe’s ratio test.
 
-**Use Case:**  
-Ideal for recognizing the same object or scene in different conditions or from different angles.
+**Images Used:**  
+- `200.jpg`  
+- `500.jpg`
+
+**Output:**  
+Matched keypoints are shown with lines connecting corresponding points across both images.
 
 ---
 
-### 2️⃣ RANSAC for Outlier Removal
+### 🔹 2. Harris Corner Detector
+
 **Purpose:**  
-To filter out incorrect keypoint matches (outliers) and estimate a reliable transformation (homography) between two images.
+To detect corners in an image by analyzing changes in pixel intensity.
 
-**How It Works:**
-- Repeatedly selects random subsets of matches.
-- Fits a transformation model (like homography).
-- Chooses the best model that has the highest number of inliers.
+**Steps:**
+- Convert image to grayscale.
+- Calculate gradient changes.
+- Use the Harris matrix to identify corner strength.
+- Mark corners exceeding a defined threshold.
 
-**Use Case:**  
-Crucial in tasks like panorama creation where some matches may be incorrect or noisy.
+**Image Used:**  
+- `cube.jpg`
+
+**Output:**  
+Corners are marked with red circles.
 
 ---
 
-### 3️⃣ Harris Corner Detector
+### 🔹 3. Shi-Tomasi Corner Detector
+
 **Purpose:**  
-To detect corner points in a grayscale image based on local intensity changes.
+An enhanced version of Harris Corner Detector selecting high-quality corners.
 
-**How It Works:**
-- Computes image gradients.
-- Evaluates a matrix (Harris matrix) for each pixel.
-- Corners are detected where there’s a large variation in all directions.
+**Steps:**
+- Convert image to grayscale.
+- Apply `cv2.goodFeaturesToTrack` to get best corners.
+- Mark selected corners on the image.
 
-**Use Case:**  
-Used in real-time tracking and motion detection due to its computational efficiency.
+**Image Used:**  
+- `cube.jpg`
 
----
-
-### 4️⃣ Shi-Tomasi Corner Detector
-**Purpose:**  
-Improves upon Harris Corner Detector by using a more stable measure of corner quality.
-
-**Key Features:**
-- Selects corners with high-quality eigenvalues.
-- Returns strong and well-distributed feature points.
-
-**Use Case:**  
-Frequently used in feature tracking (e.g., Lucas-Kanade Optical Flow).
+**Output:**  
+Corners are marked with green circles.
 
 ---
+
 
 ## 📦 Requirements
 
